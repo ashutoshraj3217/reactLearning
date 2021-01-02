@@ -1,0 +1,25 @@
+
+ 				Docker
+
+1) 
+
+stop docker service
+  sudo service docker stop
+
+start docker service
+  sudo service docker start
+
+2) 
+start docker container
+sudo docker run -itd -p 80:80 -p 443:443 -p 22:22 -p 9418:9418 1d62
+
+3)
+starting docker
+sudo docker exec -itd(d for deamon, optional, runs in background) ac2a(container id)  /bin/bash
+
+
+22 ssh port 
+443 https port
+80  http port
+9418 tcp port for git
+
