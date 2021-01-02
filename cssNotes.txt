@@ -1,0 +1,37 @@
+#Applying css only when class A is present but class B is absent
+-->   .A:not(.B):hover{
+           ----
+           ----
+               }
+
+
+# em :-
+    <html>
+     font-size=10px;
+     <body>
+      font-size=15px;
+      <div>
+       font-size=20px;
+        width=2em;
+       </div>
+ --> em looks up the font size of the element, which is 20px in this example. So the width ends up to be 
+     40px(2*20).
+ --> What if the font size of the div element is not set by you, then it is inherited from the parent 
+     element instead.
+
+# rem :-
+--> rem is also a relative CSS length, but this is slightly different from em. When em looks up the font 
+    size of the DOM element, either the parent or itself, rem always looks up the topmost element, the HTML element.
+    
+    <html>
+     font-size=10px;
+     <body>
+      font-size=15px;
+      <div>
+       font-size=20px;
+        width=2em;
+       </div>
+ Here, width will be 2*10 = 20px;
+
+ 
+
