@@ -1,0 +1,111 @@
+--> By default, React DOM escapes any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that’s not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent XSS (cross-site-scripting) attacks.
+
+-->JSX is also recommend to wrap, inside parentheses to avoid the pitfalls of automatic semicolon insertion.
+
+--> Babel compiles JSX down to React.createElement() calls.
+    conversion looks like this:
+         const element = (
+            <h1 className="greeting">
+                Hello, world!
+            </h1>
+                    );
+
+                       TO this --> 
+
+          const element = React.createElement(
+           'h1',
+         {className: 'greeting'},
+         'Hello, world!'
+            );
+
+           
+--> Note: Always start component names with a capital letter.
+    React treats components starting with lowercase letters as DOM tags. 
+
+ --> All React components must act like pure functions with respect to their props.   
+
+ --> Do Not Modify State Directly
+     For example, this will not re-render a component:
+
+    // Wrong
+    this.state.comment = 'Hello';
+    Instead, use setState():
+
+    // Correct
+    this.setState({comment: 'Hello'});
+   The only place where you can assign this.state is the constructor.
+
+ ## State Updates May Be Asynchronous
+    React may batch multiple setState() calls into a single update for performance.
+    Because this.props and this.state may be updated asynchronously, you should not rely on their values for calculating the next state.
+
+    For example, this code may fail to update the counter:
+
+    // Wrong
+    this.setState({
+        counter: this.state.counter + this.props.increment,
+    });
+    To fix it, use a second form of setState() that accepts a function rather than an object. That function will receive the previous state as the first argument, and the props at the time the update is applied as the second argument:
+
+    // Correct
+    this.setState((state, props) => ({
+     counter: state.counter + props.increment
+    }));
+    We used an arrow function above, but it also works with regular functions:
+
+   // Correct
+    this.setState(function(state, props) {
+    return {
+        counter: state.counter + props.increment
+        };
+    });
+
+
+--> state is often called local or encapsulated. It is not accessible to any component other than the
+     one that owns and sets it.
+
+--> generally it is recommended to  bind the function in the constructor or using the class fields 
+    syntax, to avoid this sort of performance problem(extra re-rendering).     
+
+ --> you cannot return false to prevent default behavior in React. You must call preventDefault explicitly.
+
+ --> It works because in JavaScript, true && expression always evaluates to expression, and false &&
+     expression always evaluates to false. eg:- 
+        {unreadMessages.length > 0 &&
+        <h2>
+          You have {unreadMessages.length} unread messages.
+        </h2>
+      }
+
+--> we key attribute, when we use map functions
+    Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity
+
+ --> We don’t recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. Check out Robin Pokorny’s article for an in-depth explanation on the negative impacts of using an index as a key. If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
+
+ --> A good rule of thumb is that elements inside the map() call need keys.
+
+--> An input form element whose value is controlled by React in this way is called a “controlled component”.
+
+--> It's preferred to have React state as a, the “single source of truth”.
+
+-->You can pass an array into the value attribute, allowing you to select multiple options in a select 
+   tag: <select multiple={true} value={['B', 'C']}>
+
+
+--> Generating keys for map if not present on iterable obj:-
+  A production solution should use a more robust approach that would handle distributed creation of items. For such, I recommend shortid. It quickly generates ‘short non-sequential url-friendly unique’ ids.
+
+# Deciding whether to make state or not:-
+Ask three questions about each piece of data:
+
+1 - Is it passed in from a parent via props? If so, it probably isn’t state.
+2 - Does it remain unchanged over time? If so, it probably isn’t state.
+3 - Can you compute it based on any other state or props in your component? If so, it isn’t state.
+
+
+--> A component can also have default props, so if a prop isn’t passed through it can still be set.
+
+
+
+
+
