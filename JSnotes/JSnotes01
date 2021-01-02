@@ -1,0 +1,73 @@
+# document.designMode = 'on'; ==> You can live edit the site.
+
+--> Js is case sensitive lang.
+
+--> () = parenthesis
+    [] = brackets
+    {} = braces.
+
+--> Define size of Array
+    var arr = Array(sizeValue);
+
+--> use backward for quoting inside a string
+    var name = "Hello, \"XYZ\", How are you? "
+      or use template literals
+
+--> ARRAY Methods =[length, sort, join, reverse, indexOf, lastIndexOf, push, split, toLowerCase  ];      
+
+--> All the uperCase letter are considered as less than lowercase letter.
+    if("aardvark" < "Beluga") // returns false
+    if("aardvark" < "beluga") // returns true
+
+--> nodeType =  element type(eg:- ul)
+                attribute type(eg:- li)
+                text node (eg:- Text ....)
+
+--> window.onload = use this only once in your script page.
+
+--> setTimeout, setInterval, clearInterval.
+
+--> JSLint = code quality tool.
+    JS Hint = detects errors & can be used for enforcing code conventions.
+    JSONLINT = json validator.
+
+--> JS library = Jquery, Closure, Moo Tools, YUI, ...
+
+--> JSON can be parsed into 2 ways:- a)eval func  b) JSON.parse()[it is more secure method but less 		compatible with older browser].
+
+--> JSON.stringify does opposite of parse.it convert JS obj to string.
+
+--> use splice method for deleting elements of array instead of delete method(don't use it).
+
+# Defining a function using function constructor i.e using new keyword
+     var functionNAme = new Function("argument1","argument2","body");
+     eg:- var a = new Function("x","y","return x+y");
+
+--> string + number = string
+--> string - number = number
+
+--> Number([1,2,3,4,5]) = NaN
+
+
+ # Constructor for data types:
+
+--> const aa = new Function('a','b','return a+b');
+    aa(1,2);  // 3
+    
+--> const arr = new Array(1,2,3,4);
+
+
+#  refrencing element having class row and seat but not occupied class.
+--> const seats = document.querySelectorAll('.row .seat:not(.occupied)');
+
+
+# Event Bubbling
+ --> For instance, a focus event does not bubble. 
+ --> event.stopPropagation();
+ --> event.stopImmediatePropagation();
+      If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.this method stops all.
+
+     
+    
+
+                     

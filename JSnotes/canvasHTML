@@ -1,0 +1,51 @@
+--> The canvas element is part of HTML5 and allows for dynamic, scriptable rendering 
+    of 2D shapes and bitmap images. It is a low level, procedural model that updates a bitmap and does not have a built-in scene graph, but through WebGL it allows 3D shapes and images to be displayed. HTML5 Canvas also helps in making 2D games.
+
+# defining a canvas
+--> <canvas height="500" width="500" style="border:2px solid black" id="ctx">
+
+# Accessing a canvas element
+--> var ctx = document.getElementById('ctx').getContext('2d');  // ctx will be holding  
+              a reference of canvas in 2d context.
+
+# drawing text inside canvas with specified location
+--> ctx.fillText("Hello World",150,250);
+
+# drawing hollow text inside canvas with specified location
+--> ctx.strokeText("Hello World",150,250);
+
+# changing font 
+--> ctx.font = "30px Calibri";
+
+
+# Moved the cursor to specified location and draw a line
+--> ctx.moveTo(100,300);  // move the cursor to specified location.
+    ctx.lineTo(200,300);   // these two method defines a line.
+
+    ctx.stroke();  // draws a line.
+
+
+# draw a rectangle
+--> ctx.fillStyle = '#efa556';
+    ctx.fillRect(300,400,150,50);
+
+
+# restore the saved state
+--> ctx.save();    // stores the current state, so that you can have  temporary 
+                      changes.    
+--> ctx.restore();  // restores the saved state. 
+
+
+#event based 
+--> document.getElementById("ctx").onmousedown = function(){
+    // code goes here
+}
+--> onmouseup
+--> onkeydown
+--> event.keyCode returns ASCII code
+
+
+
+
+
+ 

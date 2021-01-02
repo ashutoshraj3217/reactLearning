@@ -1,0 +1,86 @@
+
+                        THIS in JS
+
+                        
+ # this:-
+ --> https://youtu.be/eWDXgsIgTGk  (best explanation)
+
+  // function expression
+   let a = function(){
+     console.log(this);
+   }
+
+   a()  // this will be pointing to window object and here context is global scope or window  object.
+
+   new a() // this will be pointing to object returned by function.here function will be a constructor
+              function bcoz of new keyword and it will be constructing an object.
+    Another way of binding this is by using call, apply, bind function(known as explicit binding).
+  
+    * call(context, arg1, arg2,.....)
+      apply(context, [arg1, arg2,.....]) 
+      bind - same as call except return copy of the function with the context.
+
+   * function addOne(){
+       this.count++;
+      }
+      window.count = 5;
+      addOne.count =0;
+      addOne();
+      addOne();
+      addOne();
+      console.log(addOne.count); // 0
+      console.log(window.count); // 8
+
+    * Implicit binding
+
+       function f4(){
+        console.log(this.a); 
+       }
+       
+       let obj1 = {
+        a:1,
+        f4:f4, // direct reference to f();
+       }
+       let obj2 = {
+        a:2,
+        obj1: obj1
+       }
+       let obj3 = {
+        a:3,
+        f4: obj1.f4 // // direct reference to f(); 
+       }
+
+       obj1.f4(); // value is 1 - implicit binding
+       obj2.obj1.f4(); // value is 1 - implicit binding
+       obj3.f4(); // value is 3 - implicit binding lost.
+
+    * If "use strict" is being used then default binding(window obj, it doesn't exist now) will not take place.
+    i.e 
+     let f = function(){
+     console.log(this)
+    }
+    f(); // this will be undefined not pointint to window obj.
+
+    # this in arrow function:-
+     --> Arrow function points to where it has been written in terms of context.
+     --> even in strict mode it will point to window obj.
+     --> "use strict" 
+        let obj1= {
+        a:1
+       }
+         let f5 =() => {
+           console.log(this);
+         } 
+           f5.call(obj1);  // window
+ 
+     --> function f2(){
+          return () => {
+            console.log(this.a);
+          }                         // returning an arrow function.
+       } 
+         let x = f2.call(ob1);      // it means the context here is obj1.
+           x();  // obj1.a = 1  
+      --> arrow function ignores explicit binding.
+        i.e:-
+         x.call(obj2) // ignores the obj2 binding bcoz its binded to obj1.     
+     --> arrow function cant be used as constructor.

@@ -1,0 +1,185 @@
+--> e.target.classList.contains('className')
+--> e.target.classList.toggle('classList')  // it will add or remove the class.
+--> sort method in JS works little bit different.
+     to sort we need to use compare function
+     eg:-
+           const arr = [1,11,2,4];
+           arr.sort() // will return [1,11,2,4] should return [1,2,4,11].
+           to overcome this we use compare function
+
+            arr.sort((a,b) => a - b) // for ascending order
+            arr.sort((a,b) => b - a) // for descending order
+
+
+# reduce method results a single output value
+  
+    const arr = [1,2,3,4,5];
+
+    const  total = arr.reduce((acc,num) => (acc+num),0);  // total = 15
+        Here 0 will be assigned to acc variable.
+
+          --> this function is similar to this 
+                var sum=0;
+                for(var i=0;i<item.length;i++){
+                   sum = sum + item[i]; 
+                }
+
+
+--> Event listeners are web api.
+
+--> setTimeout is not guranted time of execution but minimum time of execution.
+
+--> browser renders its screen ~ 60 frames per second.
+--> there is render queue which updates the screen and if it is blocked somehow by bad code(that takes 
+    too much of time in stack) then UI gets blocked that is no change or user input can take place.
+--> And normally, JavaScript renders the page every 16.6ms. Then, it approximately renders the page 60 times a minute at the 16.6ms speed. This is where 60FPS comes in.
+
+--> rAF is also a macrotask since it shares the same task queue with setTimeout. And rAF can ensure to run before the script is parsed and the page is repainted, which means it’s executed earlier than setTimeout.rAF is executed before rendering.
+--> Only Safari runs rAF after the rendering.
+
+--> If you want to push a task into the microtask but your code isn’t Promise, you can use queueMicrotask.
+
+
+# cookie :- 
+ --> 4kb storage availale.
+ --> One good thing for using cookies was that the server-side and the client-side could communicate with 
+     each other through this.
+ --> sent to the server per each request.    
+ --> MDN says there are three main purposes for using cookies.
+Session management
+- Logins, shopping carts, game scores, or anything else the server should remember
+Personalization
+- User preferences, themes, and other settings
+Tracking
+- Recording and analyzing user behavior   
+
+# localStorage :-
+ --> can store the key-value based data as cookies do.
+ --> Storage capacity 5mb.
+ --> the purpose of using localStorage is to save the data only on the client-side. 
+ --> localStorage is an implementation of the Storage Interface. It stores data with no expiration date,
+     and gets cleared only through JavaScript, or clearing the Browser Cache / Locally Stored Data — unlike cookie expiry.
+
+ #  It’s a flaw of JavaScript in its architectural level. Every inner function’s “this” points out 
+    window.eg :-
+
+     var obj = { x: 1 };
+     var x = 2;
+
+    function foo() {
+     console.log(this.x);
+  
+       function bar() {
+    		console.log(this.x);  
+  			}
+  		bar();
+		}
+
+  obj.foo = foo;
+  obj.foo();
+	// 1
+	// 2    // here expected 1 but due to flaw its 2.    
+
+  -> several ways to avoid this
+    1) by using bind function
+
+    var obj = { x: 1 };
+	var x = 2;
+
+  function foo() {
+  	console.log(this.x);
+  
+  		function bar() {
+    		console.log(this.x);  
+  			}
+        bar.bind(this)();
+	}
+
+	obj.foo = foo;
+	obj.foo();
+   // 1
+  // 1 
+
+  Since bind takes the current “this” of foo as the parameter that it’ll bind to its “this”, so the new function from bar has “this” pointing out foo ’s “this”. Then you should run that function again to execute the codes inside.
+
+   An arrow function can also avoid this problem.
+
+   var x = 1;
+var obj = { x: 2 };
+
+function foo() {
+  console.log(this.x);
+  
+  var bar = () => {
+    console.log(this.x); 
+  }
+  bar();
+}
+
+obj.foo = foo;
+obj.foo();
+// 2
+// 2
+
+The reason why it worked is that an arrow function’s ThisBinding points out the LexicalEnvironment of its outer execution environment, in other words, bar uses foo ‘s “this” when it calls “this”.
+An arrow function does not have its own this. The this value of the enclosing lexical scope is used; arrow functions follow the normal variable lookup rules.
+
+
+# setTimeout(()=>{console.log("Horse A")}, 0);
+  setTimeout(console.log("Horse B"), 0);
+  //  Horse B
+  //  Horse A
+
+  --> call backs take more time.
+
+# setTimeout doesn't blocks the rendering cycle.
+
+
+
+ # Test yourself 
+
+  console.log('stack [1]');
+setTimeout(() => console.log("macro [2]"), 0);
+setTimeout(() => console.log("macro [3]"), 1);
+
+const p = Promise.resolve();
+for(let i = 0; i < 3; i++) p.then(() => {
+    setTimeout(() => {
+        console.log('stack [4]')
+        setTimeout(() => console.log("macro [5]"), 0);
+        p.then(() => console.log('micro [6]'));
+    }, 0);
+    console.log("stack [7]");
+});
+
+console.log("macro [8]");
+
+/* Result:
+stack [1]
+macro [8]
+
+stack [7], stack [7], stack [7]
+
+macro [2]
+macro [3]
+
+stack [4]
+micro [6]
+stack [4]
+micro [6]
+stack [4]
+micro [6]
+
+macro [5], macro [5], macro [5]
+
+
+--> map would be good when you want to make a new array that does not affect the original array, and forEach would be nicer when you just want to map over an array.
+
+
+
+
+
+
+
+
+

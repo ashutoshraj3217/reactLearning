@@ -1,0 +1,124 @@
+# reduce ??
+# scope Vs context
+
+# New features added in Es7 are:-
+ 1) includes method for string and array.
+     "Heelo".includes('e');  // returns true.
+
+  2) Exponential operator (**)
+       --> const square = (x) => x**2;   // returns the square of the num.
+           const cube = (x) => x**3;         
+
+
+# New features added in Es8 are:-
+  1) .padStart();  //   'Hello'.padStart(5);  // puts 5 spaces in starting on string.
+     .padEnd(); 
+  
+   2) Ending comma at function argument is valid
+       function  sum(a,b,c,d,);
+
+    3) Object.values;
+       Object.entries;
+       // earlier we used to use Object.keys;     
+    eg:- 
+        let obj = {
+        	name1:'Santa',
+        	name2:'Rudolf',
+        	name:'David'
+    	 }
+     // earlier way
+     Object.keys(obj).forEach((key,index)=>{
+        console.log(key,obj[key]);
+     });	 
+     
+     // Now
+     Object.values(obj).forEach(value =>{
+       console.log(value);
+     });
+
+     Object.entries(obj).forEach(value => {
+       console.log(value);
+     }); 
+    
+     
+
+
+
+# Array methods --> push, pop, shift, unshift, splice, slice, map, reduce, filter, length, 
+
+
+
+--> var is function scope level whereas let & const is block level.
+--> const allows to change property of object but we cant reassign object to another value.
+--> A new of using obj
+    const name = "Ashu";
+     const obj ={
+       [name] = 'hello',
+       [1+2] = 'Hi'
+     }
+
+  #closure = child function can have access to parent property but parent can't access child property.
+  
+  # currying = process of converting a function that takes multiple arguments into a function that on 
+               arguments at a time.   
+        const multiply = (a) => (b) => a*b;    
+              multiply(a)(b);
+           
+  # compose = act of putting two function together to form a third functions where output of one function 
+              is input of other.
+        const compose = (f,g) => (a) => f(g(a));
+          const sum = (num) => num +1;
+          compose(sum,sum)(5); 
+
+  # functional purity = function should not have side effects( changing gloabal value which is not 
+                          meant to be,etc..,) and must return something.       
+
+
+  # Array map funtion must have a return statement.
+    --> it is advisable to use map instead of forEach bcoz forEach may have sideaffects whereas map not 
+        have(theoritically).
+    --> map, filter doesn't mutate the original array.
+
+ # scope vs context 
+   context means w.r.t this keyword is refrencing to.
+
+  # whenever we extend one class we use super keyword so that we can have access to constructor of parent
+    class.
+  
+
+ # for in loop
+   used for enumerating Objects(bcoz properties 
+     of objects are enumerable).
+     
+ # Js has its own garbage collector.
+ 
+ 
+ # browser crash
+  run infinite loop and push value to array.
+
+  # memory leaks = memory that have been used and of no use now and are not yet free. 
+
+  --> Event listener and setIntervals must be removed and cleared after their purpose have been fulfilled, so that memory leaks can be avoided.
+
+  --> stack overflow and memory leaks are two main concern while writing JS.
+
+  # var and function declaration is hoisted.
+
+
+  #Hoisting happens on every execution context. eg:-
+
+     var a=123;
+
+     var b = function(){
+       console.log(a); // Expected output - 123  Original output - undefined  bcoz execution context of 
+                          function has its own variable with  name a which has been hoisted here.
+
+       var a = 100;
+       console.log(a); // 100
+     }
+      b();
+
+
+
+
+      
