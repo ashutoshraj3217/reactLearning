@@ -1,0 +1,83 @@
+#Taking string as a input
+  -->  getline(cin >> ws, stringVariableName);
+
+#set precision value for floating point upto 2 decimal
+  -->  printf("%.2f", variableName);
+  --> cout << fixed << setprecision(2) << variableName << endl;  
+
+   #Fibonnaci 
+--> Given a number N, say in how many different ways can you write the number N as a sum of 1 and 2.Note 
+ 	  that '1+2' is different from '2+1'.
+ sol:-
+         1 = 1
+         
+         2 = 1+1
+         2 = 2
+         
+         3 = 1+1+1
+         3 = 2+1
+         3 = 1+2
+         
+         4 = 1+1+1+1
+         4 = 2+1+1
+         4 = 1+2+1
+         4 = 1+1+2
+         4 = 2+2
+
+     therefore, dp[N] = number of different ways to write the number N as a sum of 1 and 2.
+                dp[N] = dp[N-1] + dp[N-2]
+
+
+--> Given a number N, say in how many different ways can you write the number N as a sum of 1, 2 and 3.Note 
+ 	  that '1+3' is different from '3+1'.
+sol:-
+        dp[N] = dp[N-1] + dp[N-2] + dp[N-3];
+
+
+    --> For test case 12, where the array length is about 1,000,000, simple sort will take about 10*10*850 seconds to execute = 1 day!
+    --> For n = 100,000, merge-sort is about 5,000 times faster than an O(n2) sorting algorithm!    
+    --> in place vs no place interms of complexity ?
+    --> There are in general two ways of implementing dynamic programming solutions to problems.
+        The first method is recursive with memoization, and the second method is bottom-up and iterative. 	  
+    
+    #stack
+    -->     The simplest application of a stack is to reverse a word. You push a given word to stack - letter by letter - and then pop letters from the stack.
+    -->     Another application is an "undo" mechanism in text editors; this operation is accomplished by keeping all text changes in a stack.    
+    -->     Stack is mostly used in converting and evaluating expressions in Polish notations. Infix, prefix,postfix.
+    
+    #LinkedList
+    --> if no pointer is pointing to a node, then it is eligible for garbage collector & it is deleted by it.
+    --> garbage collector deletes only those node which are not referenced by any reference variable.
+
+--> Stack can be implemented in two ways :- array and LinkedList.
+--> Linked List is more space efficient than array for Queue data structures.
+--> Pre-order, Post-order, In-order uses stack whereas Level order uses Queue
+--> Queue is always faster than system stack.
+
+--> Depending on incoming data, A binary search can get skewed and hence its performance starts going down
+    from 0(logn) to  0(n) for (RUD - READ, UPDATE, DELETE).
+     AVL Tree(Balanced binary search Tree) came into existence to solve this.
+
+# For AVL
+--> In Left-Left condition -  One right rotation
+       Left-Right condition - Left-Right rotation
+       Right-right condition - One Left rotation
+       Right-Left condition - Right-Left rotation
+
+
+#Bubble sort also known as sinking sort.
+
+
+ #Graph
+ --> weighted graph can't be used for BFS.
+ --> DFS can't be used for weighted and non-weighted graph.
+
+ # A graph containing negative cycle can't be solved by  any algorithm.
+   - the only solutions that exist for this is to inform the user and that can be done by using BellmanFord Algo.
+
+    
+
+
+
+      
+
